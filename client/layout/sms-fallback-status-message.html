@@ -1,0 +1,15 @@
+<template name="status_sms_fallback">
+  {{#unless connected}}
+    <div class="alert {{option 'classes'}} text-center" role="alert">
+      <strong>
+        <span class="glyphicon glyphicon-warning-sign"></span>
+        Internet is down. SMS messages will be used to transmit operations.
+      </strong>
+      <!-- {{extraMessage}} -->
+
+ <!--      {{#if showReconnect}}
+        <a href="#" class="alert-link">{{reconnectLabel}}</a>
+      {{/if}} -->
+    </div>
+  {{/unless}}
+</template>

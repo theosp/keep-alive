@@ -1,0 +1,55 @@
+#portfolio
+  margin-bottom: 0
+
+  .panel-body
+    padding-top: 0
+
+  .asset
+    position: relative
+
+    .badge
+      min-width: 55px
+      text-align: center
+
+    .price
+      position: absolute
+      right: 85px
+      font-size: 12px
+      top: 12px
+
+    .refresh-container
+      float: right
+      width: 34px
+      text-align: center
+      height: 37px
+      margin-top: -10px
+      padding-top: 10px
+      margin-right: -13px
+      cursor: pointer
+      padding-right: 8px
+      padding-left: 4px
+
+    &.not-negative
+      .badge
+        background-color: #178117
+
+    &.negative
+      .badge
+        background-color: #E23030
+
+    .additional-info
+      display: none
+      margin-top: 13px
+      line-height: 20px
+
+    &.focused
+      .additional-info
+        display: block
+
+    .sell
+      float: right
+      margin-top: 2px
+
+  &.not-connected
+    .asset .price
+      right: 99px

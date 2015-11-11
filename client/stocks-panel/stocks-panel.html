@@ -1,0 +1,18 @@
+<template name="stocks_panel">
+  <div class="col-md-6 col-sm-6">
+    <div class="panel panel-default" id="stocks">
+      <div class="panel-heading">
+        <h4>Market Data</h4>
+      </div>
+      <div class="panel-body">
+        <div class="list-group">
+          {{#each stocks}}
+            <a herf="javascript:void(0)" class="list-group-item asset {{#if isNegative change_percent}}negative{{else}}not-negative{{/if}}">
+              <b>{{symbol}}</b> <input type="text" value="{{price}}" class="stock-price" />
+            </a>
+          {{/each}}
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

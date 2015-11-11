@@ -1,0 +1,22 @@
+<template name="header">
+  <div class="navbar navbar-default" id="subnav">
+    <div class="col-md-12">
+      <div class="navbar-header">
+        <div class="logo">
+          <i class="fa fa-life-ring"></i> KeepAlive {{#if $not isCordova}} - Backend{{/if}}
+        </div>
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse2">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse" id="navbar-collapse2">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a id="reset" href="javascript:void(0)" role="button" data-toggle="modal">Reset</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</template>

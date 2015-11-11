@@ -1,0 +1,31 @@
+<template name="trade_panel">
+  <div class="col-md-6 col-sm-6">
+    <div class="panel panel-default {{#if $not connected}}not-connected{{/if}}" id="portfolio">
+      <div class="panel-heading">
+        <h4>{{#if $not isCordova}}User U2535634 - {{/if}}Portfolio</h4>
+      </div>
+      <div class="panel-body">
+        <div class="list-group">
+          {{#each holdings}}
+            <a herf="javascript:void(0)" class="list-group-item asset {{#if isNegative change_percent}}negative{{else}}not-negative{{/if}}">
+              <b>{{symbol}}</b> <span class="price">{{price}}</span> 
+              {{#if $not connected}}<div class="refresh-container"><i class="fa fa-fw fa-refresh"></i></div>{{/if}}
+              <span class="badge">{{twoDec change_percent}}%</span>
+              <div class="additional-info">
+                <div class="btn btn-default sell">Sell All</div>
+                Units: {{numberWithCommas amount}}<br />
+                Total value: ${{numberWithCommas worth}}
+              </div>
+            </a>
+          {{/each}}
+          <a herf="javascript:void(0)" class="list-group-item">
+            <b>Total Cash</b> <div style="float: right" id="cash">{{numberWithCommas cash_two_dec}}</div>
+          </a>
+          <a herf="javascript:void(0)" class="list-group-item panel-footer">
+            <b>Net Worth</b> <div style="float: right"><b>${{numberWithCommas net_worth}}</b></div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

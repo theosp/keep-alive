@@ -1,0 +1,7 @@
+Credits:
+
+Template from: http://www.bootstrapzero.com/bootstrap-template/google-plus
+
+Caveats:
+
+* Works transparently only on Android, ios will open the sms sending dialog.

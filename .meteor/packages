@@ -31,3 +31,6 @@ fortawesome:fontawesome
 francocatena:status
 amplify
 webapp
+
+raix:eventemitter
+meteorspark:util

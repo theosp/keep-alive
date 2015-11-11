@@ -3,21 +3,49 @@ Template.trade_panel.events
     $(".focused").removeClass("focused")
     $(e.target).closest(".asset").addClass("focused")
 
+  "click .refresh-container": (e) ->
+    if not APP.helpers.connected()
+      $asset = $(e.target).closest(".asset")
+      $asset.find(".fa-refresh").addClass("fa-spin")
+
+      APP.helpers.sendSmsToServer "GET #{this.symbol}" 
+
+      APP.modules.SmsEmitter.once "get", (symbol, price) =>
+        $asset.find(".fa-refresh").removeClass("fa-spin")
+        $asset.find(".price").html(price)
+
+        prev_value = @amount * @price
+
+        new_value = @amount * price
+
+        change_percent = ((price / @previous_price) - 1) * 100
+
+        $asset.find(".badge").html("#{change_percent.toFixed 2}%")
+
+        $asset.find(".value").html(APP.helpers.numberWithCommas(new_value))
+
+        current_netwt = parseInt($(".net-wt").html().replace(/,/g, ""), 10)
+
+        new_netwt = current_netwt - prev_value + new_value
+
+        $(".net-wt").html(APP.helpers.numberWithCommas(new_netwt.toFixed 2))
+
   "click .sell": (e) ->
-    if APP.helpers.connected()
-      Meteor.call "sell", this.symbol
-    else
-      APP.helpers.sendSmsToServer "SELL #{this.symbol}"
+    if confirm "Are you sure you want to sell all your #{this.symbol} holding?"
+      if APP.helpers.connected()
+        Meteor.call "sell", this.symbol
+      else
+        APP.helpers.sendSmsToServer "SELL #{this.symbol}"
+        $(e.target).html("Selling...")
 
-      $(e.target).closest(".asset").remove()
+        APP.modules.SmsEmitter.once "sell", (symbol) =>
+          $(e.target).closest(".asset").remove()
 
-      value = this.amount * this.price
+          value = this.amount * this.price
 
-      new_cash = value + parseInt($("#cash").html().replace(/,/g, ""), 10)
+          new_cash = value + parseInt($("#cash").html().replace(/,/g, ""), 10)
 
-      $("#cash").html(APP.helpers.numberWithCommas(new_cash.toFixed 2))
-
-
+          $("#cash").html(APP.helpers.numberWithCommas(new_cash.toFixed 2))
 
 helpers = 
   holdings: ->

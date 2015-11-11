@@ -14,7 +14,7 @@
               <div class="additional-info">
                 <div class="btn btn-default sell">Sell All</div>
                 Units: {{numberWithCommas amount}}<br />
-                Total value: ${{numberWithCommas worth}}
+                Total value: $<span class="value">{{numberWithCommas worth}}</span>
               </div>
             </a>
           {{/each}}
@@ -22,7 +22,7 @@
             <b>Total Cash</b> <div style="float: right" id="cash">{{numberWithCommas cash_two_dec}}</div>
           </a>
           <a herf="javascript:void(0)" class="list-group-item panel-footer">
-            <b>Net Worth</b> <div style="float: right"><b>${{numberWithCommas net_worth}}</b></div>
+            <b>Net Worth</b> <div style="float: right"><b>$<span class="net-wt">{{numberWithCommas net_worth}}</span></b></div>
           </a>
         </div>
       </div>
